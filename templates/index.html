@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(135deg, #d9a7c7, #fffcdc);
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background: linear-gradient(135deg, #d9a7c7, #fffcdc); }
+            100% { background: linear-gradient(135deg, #89f7fe, #66a6ff); }
+        }
+
+        header {
+            background-color: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            animation: textSlide 3s;
+        }
+
+        @keyframes textSlide {
+            0% { transform: translateY(-100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 3s;
+        }
+
+        .project-info h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .project-info p {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Library Management System</h1>
+    </header>
+
+    <nav>
+        <a href="{{ url_for('books') }}">Manage Books</a>
+        <a href="{{ url_for('members') }}">Manage Members</a>
+        <a href="{{ url_for('add_book') }}">Add New Book</a>
+        <a href="{{ url_for('add_member') }}">Add New Member</a>
+    </nav>
+
+    <div class="project-info">
+        <h2>About This Project</h2>
+        <p>
+            The Library Management System is a web application designed to manage the day-to-day operations of a library.
+            It provides features to manage books, members, and borrowing activities efficiently. With this system, library
+            administrators can easily add, update, delete, and view records of books and members.
+        </p>
+        <p>
+            The project is built using <strong>Flask</strong>, a lightweight Python framework for web development. It also
+            integrates Bootstrap for a responsive design and SQLite as the database for managing data storage. This system
+            aims to simplify library operations and ensure data consistency and accuracy.
+        </p>
+    </div>
+</body>
+</html>

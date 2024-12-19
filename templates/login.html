@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div class="bg-white p-6 rounded shadow-md w-96">
+        <h2 class="text-2xl font-semibold text-center mb-6">Login</h2>
+        <form id="login-form">
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" class="w-full p-2 mt-2 border border-gray-300 rounded" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" name="password" class="w-full p-2 mt-2 border border-gray-300 rounded" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Login</button>
+            <div class="mt-4 text-center">
+                <p id="error-message" class="text-red-500 text-sm hidden">Invalid credentials. Please try again.</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript for handling login
+        const form = document.getElementById('login-form');
+        const errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // On success, save the token (you can save it in localStorage or cookie)
+                localStorage.setItem('access_token', data.access_token);
+                window.location.href = '/info'; // Redirect to a protected route
+            } else {
+                // Show error message on failure
+                errorMessage.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
